@@ -11,6 +11,7 @@ import Feed from './components/Feed'
 import { BrowserRouter,Routes,Route } from 'react-router-dom'
 import Logout from './components/Logout'
 import Login from './components/Login'
+import Profile from './components/Profile'
 
 function App() {
 
@@ -23,6 +24,8 @@ function App() {
            <Route path="/" element={<Feed />} />
            <Route path="/login" element={<Login />} />
            <Route path ="/logout" element ={<Logout/>} />
+           <Route path="/profile" element ={<Profile/>} />
+
           </Route>
         </Routes>
       </BrowserRouter>
