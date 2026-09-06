@@ -21,7 +21,6 @@ const NavBar = () => {
     }
   };
   const user = useSelector((state) => state.user);
-  console.log(`user from NavBar:`, user);
   return (
     <div className="navbar bg-base-300 shadow-sm">
   <div className="flex-1">
