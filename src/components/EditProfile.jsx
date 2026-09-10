@@ -7,86 +7,332 @@ import UserCard from './UserCard';
 
 const EditProfile = ({ user }) => {
 
+    const [firstName, setFirstName] = useState(user.firstName || '');
+    const [lastName, setLastName] = useState(user.lastName || '');
+    const [age, setAge] = useState(user.age || '');
+    const [gender, setGender] = useState(user.gender || '');
+    const [about, setAbout] = useState(user.about || '');
+    const [photoURL, setPhotoURL] = useState(user.photoURL || '');
 
-    const [firstName, setFirstName] = useState(user.firstName);
-    const [lastName, setLastName] = useState(user.lastName);
-    const [age, setAge] = useState(user.age);
-    const [gender, setGender] = useState(user.gender);
-    const [about, setAbout] = useState(user.about);
-    const [photoURL, setPhotoURL] = useState(user.photoURL);
     const [showToast, setShowToast] = useState(false);
+    const [isSaving, setIsSaving] = useState(false);
+
     const dispatch = useDispatch();
 
-
     const handleSave = async () => {
-        const response = await axios.post(`${BASE_URL}/profile/edit`, {
-            firstName,
-            lastName,
-            age,
-            gender,
-            about,
-            photoURL
-        }, { withCredentials: true });
-        dispatch(addUser(response.data?.data))
-        setShowToast(true);
-        setTimeout(() => setShowToast(false), 3000);
-    }
+
+        try {
+            setIsSaving(true);
+
+            const response = await axios.post(
+                `${BASE_URL}/profile/edit`,
+                {
+                    firstName,
+                    lastName,
+                    age,
+                    gender,
+                    about,
+                    photoURL
+                },
+                { withCredentials: true }
+            );
+
+            dispatch(addUser(response.data?.data));
+
+            setShowToast(true);
+
+            setTimeout(() => {
+                setShowToast(false);
+            }, 3000);
+
+        } catch (error) {
+            console.error('Profile update failed:', error);
+        } finally {
+            setIsSaving(false);
+        }
+    };
 
     return (
-        <>
-            <div className="flex justify-center my-5 "> <div>
-                <div className="card card-border bg-base-300 w-96  mx-5">
-                    <div className="card-body justify-center ">
-                        <h2 className="card-title justify-center">Profile</h2>
-                        <div>
-                            <fieldset className="fieldset">
-                                <legend className="fieldset-legend">firstName</legend>
-                                <input type="text" className="input" placeholder="Type here" value={firstName} onChange={(e) => setFirstName(e.target.value)} />
-                            </fieldset>
-                            <fieldset className="fieldset">
-                                <legend className="fieldset-legend">lastName</legend>
-                                <input type="text" className="input" placeholder="Type here" value={lastName} onChange={(e) => setLastName(e.target.value)} />
-                            </fieldset>
-                            <fieldset className="fieldset">
-                                <legend className="fieldset-legend">age</legend>
-                                <input type="number" className="input" placeholder="Type here" value={age} onChange={(e) => setAge(e.target.value)} />
-                            </fieldset>
-                            <div className="dropdown">
-                                <p>Select your gender:</p>
-                                <div tabIndex={0} role="button" className="btn m-1">{gender || "Select Gender"}</div>
-                                <ul tabIndex={-1} className="dropdown-content menu bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm">
-                                    <li><a onClick={() => setGender("Male")}>Male</a></li>
-                                    <li><a onClick={() => setGender("Female")}>Female</a></li>
-                                </ul>
-                            </div>
-                            <textarea className="textarea" placeholder="Bio" value={about} onChange={(e) => setAbout(e.target.value)}></textarea>
-                            <fieldset className="fieldset">
-                                <legend className="fieldset-legend">photoURL</legend>
-                                <input type="text" className="input" placeholder="Type here" value={photoURL} onChange={(e) => setPhotoURL(e.target.value)} />
-                            </fieldset>
+        <div className="min-h-screen bg-base-200 px-4 py-8">
 
-                        </div>
-                        <div className="card-actions justify-center">
-                            <button className="btn btn-primary " onClick={handleSave}>Save</button>
-                        </div>
+            {/* Page heading */}
+            <div className="mx-auto mb-8 max-w-5xl text-center">
+
+                <h1 className="text-3xl font-extrabold">
+                    Edit Your Profile
+                </h1>
+
+                <p className="mt-2 text-base-content/60">
+                    Update your information and see how your profile looks
+                </p>
+
+            </div>
+
+
+            {/* Main content */}
+            <div className="
+                mx-auto
+                flex
+                max-w-5xl
+                flex-col
+                items-center
+                justify-center
+                gap-8
+                lg:flex-row
+                lg:items-start
+            ">
+
+                {/* ================= FORM ================= */}
+                <div className="
+                    w-full
+                    max-w-md
+                    rounded-3xl
+                    border
+                    border-base-300
+                    bg-base-100
+                    p-6
+                    shadow-xl
+                ">
+
+                    <div className="mb-6">
+
+                        <h2 className="text-xl font-bold">
+                            Profile Information
+                        </h2>
+
+                        <p className="mt-1 text-sm text-base-content/60">
+                            Keep your profile up to date.
+                        </p>
+
                     </div>
+
+
+                    {/* First Name */}
+                    <fieldset className="fieldset mb-3">
+
+                        <legend className="fieldset-legend">
+                            First Name
+                        </legend>
+
+                        <input
+                            type="text"
+                            className="input input-bordered w-full rounded-xl"
+                            placeholder="Enter your first name"
+                            value={firstName}
+                            onChange={(e) =>
+                                setFirstName(e.target.value)
+                            }
+                        />
+
+                    </fieldset>
+
+
+                    {/* Last Name */}
+                    <fieldset className="fieldset mb-3">
+
+                        <legend className="fieldset-legend">
+                            Last Name
+                        </legend>
+
+                        <input
+                            type="text"
+                            className="input input-bordered w-full rounded-xl"
+                            placeholder="Enter your last name"
+                            value={lastName}
+                            onChange={(e) =>
+                                setLastName(e.target.value)
+                            }
+                        />
+
+                    </fieldset>
+
+
+                    {/* Age */}
+                    <fieldset className="fieldset mb-3">
+
+                        <legend className="fieldset-legend">
+                            Age
+                        </legend>
+
+                        <input
+                            type="number"
+                            className="input input-bordered w-full rounded-xl"
+                            placeholder="Enter your age"
+                            value={age}
+                            onChange={(e) =>
+                                setAge(e.target.value)
+                            }
+                        />
+
+                    </fieldset>
+
+
+                    {/* Gender */}
+                    <fieldset className="fieldset mb-3">
+
+                        <legend className="fieldset-legend">
+                            Gender
+                        </legend>
+
+                        <select
+                            className="select select-bordered w-full rounded-xl"
+                            value={gender}
+                            onChange={(e) =>
+                                setGender(e.target.value)
+                            }
+                        >
+                            <option value="" disabled>
+                                Select your gender
+                            </option>
+
+                            <option value="Male">
+                                Male
+                            </option>
+
+                            <option value="Female">
+                                Female
+                            </option>
+
+                        </select>
+
+                    </fieldset>
+
+
+                    {/* About */}
+                    <fieldset className="fieldset mb-3">
+
+                        <legend className="fieldset-legend">
+                            About
+                        </legend>
+
+                        <textarea
+                            className="
+                                textarea
+                                textarea-bordered
+                                h-28
+                                w-full
+                                rounded-xl
+                            "
+                            placeholder="Tell something about yourself..."
+                            value={about}
+                            onChange={(e) =>
+                                setAbout(e.target.value)
+                            }
+                        />
+
+                    </fieldset>
+
+
+                    {/* Photo URL */}
+                    <fieldset className="fieldset mb-6">
+
+                        <legend className="fieldset-legend">
+                            Profile Photo URL
+                        </legend>
+
+                        <input
+                            type="text"
+                            className="input input-bordered w-full rounded-xl"
+                            placeholder="https://example.com/photo.jpg"
+                            value={photoURL}
+                            onChange={(e) =>
+                                setPhotoURL(e.target.value)
+                            }
+                        />
+
+                    </fieldset>
+
+
+                    {/* Save button */}
+                    <button
+                        className="
+                            btn
+                            btn-primary
+                            w-full
+                            rounded-xl
+                            text-base
+                            shadow-md
+                            transition-all
+                            hover:scale-[1.02]
+                            hover:shadow-lg
+                        "
+                        onClick={handleSave}
+                        disabled={isSaving}
+                    >
+
+                        {isSaving ? (
+                            <>
+                                <span className="loading loading-spinner loading-sm"></span>
+                                Saving...
+                            </>
+                        ) : (
+                            <>
+                                💾 Save Profile
+                            </>
+                        )}
+
+                    </button>
+
                 </div>
-            </div>
-                <div className="mx-5">
-                    <UserCard user={{ firstName, lastName, age, gender, about, photoURL }} showActions={false} />
+
+
+                {/* ================= PREVIEW ================= */}
+                <div className="w-full max-w-md">
+
+                    <div className="mb-4 text-center">
+
+                        <h2 className="text-xl font-bold">
+                            Live Preview
+                        </h2>
+
+                        <p className="mt-1 text-sm text-base-content/60">
+                            This is how others will see you.
+                        </p>
+
+                    </div>
+
+                    <div className="flex justify-center">
+
+                        <UserCard
+                            user={{
+                                _id: user._id,
+                                firstName,
+                                lastName,
+                                age,
+                                gender,
+                                about,
+                                photoURL
+                            }}
+                            showActions={false}
+                        />
+
+                    </div>
+
                 </div>
+
             </div>
+
+
+            {/* ================= SUCCESS TOAST ================= */}
             {showToast && (
-                <div className="toast toast-top toast-center">
-                    <div className="alert alert-success">
-                        <span>Profile updated successfully.</span>
+                <div className="toast toast-top toast-center z-[9999]">
+
+                    <div className="
+                        alert
+                        alert-success
+                        rounded-2xl
+                        shadow-xl
+                    ">
+                        <span>
+                            ✅ Profile updated successfully!
+                        </span>
                     </div>
+
                 </div>
             )}
 
-        </>
-    )
-
+        </div>
+    );
 };
 
 export default EditProfile;
