@@ -1,35 +1,36 @@
-import { useState } from 'react'
-import heroImg from './assets/hero.png'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
+import Signup from './components/Signup'
 import './App.css'
 import { Provider } from 'react-redux';
 import store from './utils/appStore';
-import NavBar from './components/NavBar'
 import Body from './components/Body'
 import Feed from './components/Feed'
-import { BrowserRouter,Routes,Route } from 'react-router-dom'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Logout from './components/Logout'
 import Login from './components/Login'
 import Profile from './components/Profile'
+import { Connection } from './components/Connection'
+import Requests from './components/Request'
+
 
 function App() {
 
   return (
     <>
-     <Provider store={store}>
-      <BrowserRouter basename="/">
-        <Routes>
-          <Route path="/" element={<Body />}>
-           <Route path="/" element={<Feed />} />
-           <Route path="/login" element={<Login />} />
-           <Route path ="/logout" element ={<Logout/>} />
-           <Route path="/profile" element ={<Profile/>} />
-
-          </Route>
-        </Routes>
-      </BrowserRouter>
-     </Provider>
+      <Provider store={store}>
+        <BrowserRouter basename="/">
+          <Routes>
+            <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<Signup />} />
+            <Route path="/" element={<Body />}>
+              <Route index element={<Feed />} />
+              <Route path="connection" element={<Connection />} />
+              <Route path="logout" element={<Logout />} />
+              <Route path="profile" element={<Profile />} />
+              <Route path="requests" element={<Requests />} />
+            </Route>
+          </Routes>
+        </BrowserRouter>
+      </Provider>
     </>
   )
 }

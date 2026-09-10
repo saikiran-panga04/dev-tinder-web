@@ -1,4 +1,3 @@
-import React from 'react'
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
@@ -8,8 +7,8 @@ import { BASE_URL } from '../utils/constants';
 
 const Login = () => {
 
-    const [emailId,setEmailId] = useState("tanjiro.kamodo@gmail.com")
-    const [password,setPassword] = useState("Tanjiro@123")
+    const [emailId,setEmailId] = useState("tanjiro.kamado@gmail.com")
+    const [password,setPassword] = useState("Tanjiro@123");
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
@@ -43,6 +42,7 @@ const Login = () => {
                     <div className="card-actions justify-center">
                         <button className="btn btn-primary " onClick={handleLogin}>Login</button>
                     </div>
+                    <p className="text-center cursor-pointer" onClick={() => navigate('/signup')}>Create Account</p>
                 </div>
             </div>
         </div>

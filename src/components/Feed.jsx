@@ -1,35 +1,34 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import axios from 'axios';
 import { BASE_URL } from '../utils/constants';
 import { useDispatch, useSelector } from 'react-redux';
 import { addFeed } from '../utils/feedSlice';
-import UserCard from './userCard';
+import UserCard from './UserCard';
 
 const Feed = () => {
   const dispatch = useDispatch();
   const feed = useSelector(state => state.feed);
 
-  console.log("Redux feed:", feed);
-
-  const getFeed = async () => {
+  useEffect(() => {
     if (feed.length > 0) return;
 
-    const response = await axios.get(
-      `${BASE_URL}/feed`,
-      { withCredentials: true }
-    );
+    const getFeed = async () => {
+      const response = await axios.get(
+        `${BASE_URL}/feed`,
+        { withCredentials: true }
+      );
 
-    console.log("Feed response:", response.data);
+      dispatch(addFeed(response.data.data));
+    };
 
-    dispatch(addFeed(response.data.data));
-  };
-
-  useEffect(() => {
     getFeed();
-  }, []);
+  }, [dispatch, feed.length]);
 
-  return (
+ 
+
+  return feed && feed.length > 0 && (
     <div className="flex justify-center my-4">
+    
       <UserCard user={feed[0]} />
     </div>
   );

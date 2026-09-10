@@ -24,7 +24,7 @@ const Body = () => {
       const res = await axios.get(`${BASE_URL}/profile/view`, {
         withCredentials: true
       });
-      console.log(res.data)
+
       dispatch(addUser(res.data.data))
     }
     catch(err){
@@ -38,6 +38,10 @@ const Body = () => {
   React.useEffect(() => {
     fetchUser();
   }, []);
+
+  if (!userData) {
+    return <div className="flex min-h-screen items-center justify-center">Loading...</div>;
+  }
 
   return (
     <>
