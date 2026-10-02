@@ -206,6 +206,18 @@ const Login = () => {
                     </label>
 
                 </fieldset>
+                <button
+                        className="
+                            mt-2
+                            font-semibold
+                            text-primary
+                            transition-colors
+                            hover:underline
+                        "
+                        onClick={() => navigate('/ForgotPwd')}
+                    >
+                        forgot password →
+                    </button>
 
 
                 {/* Login Button */}
