@@ -1,11 +1,9 @@
 import axios from 'axios';
 import { BASE_URL } from '../utils/constants';
-import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { removeFeed } from '../utils/feedSlice';
-import { createPortal } from 'react-dom';
 
-const UserCard = ({ user, showActions = true }) => {
+const UserCard = ({ user, showActions = true, onInterested }) => {
     const {
         _id,
         firstName,
@@ -16,7 +14,6 @@ const UserCard = ({ user, showActions = true }) => {
         about
     } = user;
 
-    const [showToast, setShowToast] = useState(false);
     const dispatch = useDispatch();
 
     const handleSendRequest = async (status) => {
@@ -26,12 +23,11 @@ const UserCard = ({ user, showActions = true }) => {
             { withCredentials: true }
         );
 
-        dispatch(removeFeed(_id));
-
         if (status === 'interested') {
-            setShowToast(true);
-            setTimeout(() => setShowToast(false), 3000);
+            onInterested?.();
         }
+
+        dispatch(removeFeed(_id));
     };
 
     return (
@@ -40,20 +36,24 @@ const UserCard = ({ user, showActions = true }) => {
             {/* Main Card */}
             <div
                 className="
-                    w-96
+                    w-full
+                    max-w-md
                     overflow-hidden
-                    rounded-3xl
+                    rounded-2xl
+                    border
+                    border-base-300/60
                     bg-base-100
-                    shadow-xl
+                    shadow-lg
                     transition-all
                     duration-300
-                    hover:-translate-y-2
-                    hover:shadow-2xl
+                    hover:-translate-y-1
+                    hover:border-primary/30
+                    hover:shadow-xl
                 "
             >
 
                 {/* Image Section */}
-                <div className="relative h-80 overflow-hidden">
+                <div className="relative aspect-[4/3] overflow-hidden sm:aspect-[5/4]">
 
                     <img
                         src={photoURL || "https://daisyui.com"}
@@ -96,7 +96,7 @@ const UserCard = ({ user, showActions = true }) => {
                     {/* Online badge */}
                     <div className="absolute right-4 top-4">
                         <span className="flex items-center gap-2 rounded-full bg-black/40 px-3 py-2 text-sm text-white backdrop-blur-md">
-                            <span className="h-2.5 w-2.5 rounded-full bg-green-400"></span>
+                            <span className="size-2 rounded-full bg-success"></span>
                             Active
                         </span>
                     </div>
@@ -137,11 +137,11 @@ const UserCard = ({ user, showActions = true }) => {
                                 className="
                                     btn
                                     btn-outline
-                                    rounded-xl
+                                    rounded-lg
                                     border-base-300
                                     transition-all
-                                    duration-200
-                                    hover:scale-[1.03]
+                                    duration-300
+                                    hover:-translate-y-0.5
                                 "
                                 onClick={() =>
                                     handleSendRequest('ignored')
@@ -154,11 +154,11 @@ const UserCard = ({ user, showActions = true }) => {
                                 className="
                                     btn
                                     btn-secondary
-                                    rounded-xl
+                                    rounded-lg
                                     shadow-md
                                     transition-all
-                                    duration-200
-                                    hover:scale-[1.03]
+                                    duration-300
+                                    hover:-translate-y-0.5
                                     hover:shadow-lg
                                 "
                                 onClick={() =>
@@ -172,20 +172,6 @@ const UserCard = ({ user, showActions = true }) => {
                     )}
                 </div>
             </div>
-
-            {/* Toast */}
-            {showToast &&
-                createPortal(
-                    <div className="toast toast-top toast-center z-[9999]">
-                        <div className="alert alert-success rounded-2xl shadow-xl">
-                            <span>
-                                ❤️ Interested request sent successfully!
-                            </span>
-                        </div>
-                    </div>,
-                    document.body
-                )
-            }
 
         </div>
     );

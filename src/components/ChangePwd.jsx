@@ -69,25 +69,9 @@ const ChangePwd = () => {
     };
 
     return (
-        <div className="
-            flex
-            min-h-[calc(100vh-64px)]
-            items-center
-            justify-center
-            bg-base-200
-            px-4
-        ">
+        <div className="auth-page">
 
-            <div className="
-                w-full
-                max-w-md
-                rounded-3xl
-                border
-                border-base-300
-                bg-base-100
-                p-8
-                shadow-2xl
-            ">
+            <div className="auth-panel enter-soft p-5 sm:p-8">
 
                 {/* Header */}
                 <div className="mb-8 text-center">
@@ -100,7 +84,7 @@ const ChangePwd = () => {
                         w-16
                         items-center
                         justify-center
-                        rounded-2xl
+                        rounded-xl
                         bg-primary
                         text-3xl
                         shadow-lg
@@ -152,7 +136,7 @@ const ChangePwd = () => {
                             input
                             input-bordered
                             w-full
-                            rounded-xl
+                            rounded-lg
                         "
                         placeholder="Enter new password"
                         value={password}
@@ -177,7 +161,7 @@ const ChangePwd = () => {
                             input
                             input-bordered
                             w-full
-                            rounded-xl
+                            rounded-lg
                         "
                         placeholder="Confirm new password"
                         value={confirmPassword}
@@ -195,9 +179,11 @@ const ChangePwd = () => {
                         btn
                         btn-primary
                         w-full
-                        rounded-xl
+                        rounded-lg
                         text-base
-                        shadow-md
+                        transition-all
+                        duration-300
+                        hover:-translate-y-0.5
                     "
                     onClick={handleChangePassword}
                     disabled={isLoading}
