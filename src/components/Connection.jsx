@@ -43,20 +43,10 @@ export const Connection = () => {
     }, []);
 
     return (
-        <div className="
-            min-h-[calc(100vh-64px)]
-            bg-base-200
-            px-4
-            py-8
-        ">
+        <section className="app-page enter-soft">
 
             {/* Header */}
-            <div className="
-                mx-auto
-                mb-8
-                max-w-5xl
-                text-center
-            ">
+            <div className="app-container mb-8 text-center">
 
                 <div className="
                     mx-auto
@@ -74,11 +64,7 @@ export const Connection = () => {
                     🤝
                 </div>
 
-                <h1 className="
-                    text-3xl
-                    font-extrabold
-                    tracking-tight
-                ">
+                <h1 className="page-title">
                     Your Connections
                 </h1>
 
@@ -94,13 +80,7 @@ export const Connection = () => {
 
             {/* Connection count */}
             {connections?.length > 0 && (
-                <div className="
-                    mx-auto
-                    mb-6
-                    flex
-                    max-w-5xl
-                    justify-center
-                ">
+                <div className="app-container mb-6 flex justify-center">
 
                     <div className="
                         badge
@@ -122,14 +102,7 @@ export const Connection = () => {
             {/* Connections */}
             {connections?.length > 0 ? (
 
-                <div className="
-                    mx-auto
-                    grid
-                    max-w-5xl
-                    grid-cols-1
-                    gap-5
-                    md:grid-cols-2
-                ">
+                <div className="app-container grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
 
                     {connections.map((connection, index) => (
 
@@ -153,57 +126,19 @@ export const Connection = () => {
             ) : (
 
                 /* Empty State */
-                <div className="
-                    mx-auto
-                    flex
-                    max-w-md
-                    flex-col
-                    items-center
-                    rounded-3xl
-                    border
-                    border-base-300
-                    bg-base-100
-                    p-10
-                    text-center
-                    shadow-xl
-                ">
-
-                    <div className="
-                        mb-5
-                        flex
-                        h-20
-                        w-20
-                        items-center
-                        justify-center
-                        rounded-full
-                        bg-base-200
-                        text-4xl
-                    ">
+                <div className="surface-panel mx-auto flex max-w-md flex-col items-center p-8 text-center sm:p-10">
+                    <div className="mb-5 grid size-16 place-items-center rounded-2xl bg-secondary/15 text-3xl text-secondary-content" aria-hidden="true">
                         💬
                     </div>
-
-                    <h2 className="
-                        text-xl
-                        font-bold
-                    ">
-                        No connections yet
-                    </h2>
-
-                    <p className="
-                        mt-2
-                        text-sm
-                        leading-relaxed
-                        text-base-content/60
-                    ">
-                        Start exploring developers and send
-                        connection requests to build your network.
+                    <h2 className="text-xl font-bold">Your connections</h2>
+                    <p className="mt-2 text-sm leading-relaxed text-base-content/60">
+                        Developers you connect with will appear here.
                     </p>
-
                 </div>
 
             )}
 
-        </div>
+        </section>
     );
 };
 

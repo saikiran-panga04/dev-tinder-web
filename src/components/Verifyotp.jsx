@@ -64,8 +64,8 @@ const Verifyotp = () => {
     // User shouldn't directly open /verify-otp
     if (!emailId) {
         return (
-            <div className="flex min-h-[calc(100vh-64px)] items-center justify-center">
-                <div className="text-center">
+            <div className="auth-page">
+                <div className="surface-panel enter-soft w-full max-w-md p-6 text-center sm:p-8">
                     <p className="mb-4">
                         Invalid password reset session.
                     </p>
@@ -82,26 +82,9 @@ const Verifyotp = () => {
     }
 
     return (
-        <div className="
-            flex
-            min-h-[calc(100vh-64px)]
-            items-center
-            justify-center
-            bg-base-200
-            px-4
-        ">
+        <div className="auth-page">
 
-            <div className="
-                w-full
-                max-w-md
-                rounded-3xl
-                border
-                border-base-300
-                bg-base-100
-                p-8
-                text-center
-                shadow-2xl
-            ">
+            <div className="auth-panel enter-soft p-5 text-center sm:p-8">
 
                 {/* Icon */}
                 <div className="
@@ -167,7 +150,8 @@ const Verifyotp = () => {
                             text-center
                             text-2xl
                             font-bold
-                            tracking-[0.7em]
+                            tracking-[0.5em]
+                            rounded-lg
                         "
                     />
 
@@ -179,7 +163,7 @@ const Verifyotp = () => {
                         btn
                         btn-primary
                         w-full
-                        rounded-xl
+                        rounded-lg
                     "
                     disabled={isLoading || otp.length !== 6}
                     onClick={handleVerifyOtp}

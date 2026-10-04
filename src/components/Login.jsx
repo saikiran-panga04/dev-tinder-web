@@ -53,27 +53,10 @@ const Login = () => {
     };
 
     return (
-        <div className="
-            min-h-[calc(100vh-64px)]
-            flex
-            items-center
-            justify-center
-            bg-base-200
-            px-4
-            py-10
-        ">
+        <div className="auth-page">
 
             {/* Login Card */}
-            <div className="
-                w-full
-                max-w-md
-                rounded-3xl
-                border
-                border-base-300
-                bg-base-100
-                p-8
-                shadow-2xl
-            ">
+            <div className="auth-panel enter-soft p-5 sm:p-8">
 
                 {/* Logo / Heading */}
                 <div className="mb-8 text-center">
@@ -114,7 +97,7 @@ const Login = () => {
                         alert
                         alert-error
                         mb-5
-                        rounded-xl
+                            rounded-lg
                         text-sm
                     ">
                         <span>{error}</span>
@@ -136,7 +119,7 @@ const Login = () => {
                         w-full
                         items-center
                         gap-3
-                        rounded-xl
+                            rounded-lg
                     ">
 
                         <span className="text-lg opacity-60">

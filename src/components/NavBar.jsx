@@ -1,5 +1,4 @@
 import axios from 'axios';
-import React from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { removeUser } from '../utils/userSlice';
@@ -35,10 +34,10 @@ const NavBar = () => {
             top-0
             z-50
             border-b
-            border-base-300
-            bg-base-100/90
-            px-4
-            shadow-md
+            border-base-300/60
+            bg-base-100/80
+            px-3
+            shadow-sm
             backdrop-blur-md
         ">
 
@@ -50,9 +49,9 @@ const NavBar = () => {
                     className="
                         btn
                         btn-ghost
-                        text-2xl
+                        text-xl
                         font-extrabold
-                        tracking-tight
+                        sm:text-2xl
                     "
                 >
                     <span className="text-primary">
@@ -67,7 +66,7 @@ const NavBar = () => {
 
             {/* User Section */}
             {user && (
-                <div className="flex items-center gap-4">
+                <div className="flex items-center gap-2 sm:gap-4">
 
                     {/* Welcome message */}
                     <div className="hidden sm:block text-right">
@@ -93,11 +92,11 @@ const NavBar = () => {
                                 btn-ghost
                                 btn-circle
                                 avatar
-                                ring-2
-                                ring-primary/30
+                                ring-1
+                                ring-base-content/15
                                 transition-all
-                                duration-200
-                                hover:ring-primary
+                                duration-300
+                                hover:ring-primary/60
                             "
                         >
                             <div className="w-11 rounded-full">
@@ -123,12 +122,13 @@ const NavBar = () => {
                                 z-[100]
                                 mt-4
                                 w-60
-                                rounded-2xl
+                                rounded-xl
                                 border
-                                border-base-300
-                                bg-base-100
+                                border-base-300/70
+                                bg-base-100/95
                                 p-2
-                                shadow-2xl
+                                shadow-xl
+                                backdrop-blur-xl
                             "
                         >
 

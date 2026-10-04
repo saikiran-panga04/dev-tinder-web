@@ -27,9 +27,9 @@ const Signup = () => {
   };
 
   return (
-    <div className="signup-container flex justify-center items-center min-h-screen bg-base-200 p-4">
-      <div className="card w-full max-w-lg bg-base-100 shadow-xl p-8 flex flex-col gap-4">
-        <h2 className="text-2xl font-bold text-center mb-2">Create an Account</h2>
+    <div className="auth-page">
+      <div className="auth-panel enter-soft flex max-w-xl flex-col gap-4 p-5 sm:p-8">
+        <h2 className="page-title mb-2 text-center">Create an Account</h2>
         
         {/* Name Row */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -89,7 +89,7 @@ const Signup = () => {
 
         {/* Action Button */}
         <div className="mt-4">
-          <button className="btn btn-info w-full text-white font-semibold" onClick={handleSignUp}>Sign Up</button>
+          <button className="btn btn-primary w-full rounded-lg font-semibold transition-all duration-300 hover:-translate-y-0.5" onClick={handleSignUp}>Sign Up</button>
         </div>
       </div>
     </div>

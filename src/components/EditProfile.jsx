@@ -53,12 +53,12 @@ const EditProfile = ({ user }) => {
     };
 
     return (
-        <div className="min-h-screen bg-base-200 px-4 py-8">
+        <div className="app-page">
 
             {/* Page heading */}
-            <div className="mx-auto mb-8 max-w-5xl text-center">
+            <div className="app-container mb-8 text-center">
 
-                <h1 className="text-3xl font-extrabold">
+                <h1 className="page-title">
                     Edit Your Profile
                 </h1>
 
@@ -83,16 +83,7 @@ const EditProfile = ({ user }) => {
             ">
 
                 {/* ================= FORM ================= */}
-                <div className="
-                    w-full
-                    max-w-md
-                    rounded-3xl
-                    border
-                    border-base-300
-                    bg-base-100
-                    p-6
-                    shadow-xl
-                ">
+                <div className="surface-panel w-full max-w-md p-5 sm:p-7">
 
                     <div className="mb-6">
 
@@ -116,7 +107,7 @@ const EditProfile = ({ user }) => {
 
                         <input
                             type="text"
-                            className="input input-bordered w-full rounded-xl"
+                            className="input input-bordered w-full rounded-lg"
                             placeholder="Enter your first name"
                             value={firstName}
                             onChange={(e) =>
@@ -136,7 +127,7 @@ const EditProfile = ({ user }) => {
 
                         <input
                             type="text"
-                            className="input input-bordered w-full rounded-xl"
+                            className="input input-bordered w-full rounded-lg"
                             placeholder="Enter your last name"
                             value={lastName}
                             onChange={(e) =>
@@ -156,7 +147,7 @@ const EditProfile = ({ user }) => {
 
                         <input
                             type="number"
-                            className="input input-bordered w-full rounded-xl"
+                            className="input input-bordered w-full rounded-lg"
                             placeholder="Enter your age"
                             value={age}
                             onChange={(e) =>
@@ -175,7 +166,7 @@ const EditProfile = ({ user }) => {
                         </legend>
 
                         <select
-                            className="select select-bordered w-full rounded-xl"
+                            className="select select-bordered w-full rounded-lg"
                             value={gender}
                             onChange={(e) =>
                                 setGender(e.target.value)
@@ -211,7 +202,7 @@ const EditProfile = ({ user }) => {
                                 textarea-bordered
                                 h-28
                                 w-full
-                                rounded-xl
+                                rounded-lg
                             "
                             placeholder="Tell something about yourself..."
                             value={about}
@@ -232,7 +223,7 @@ const EditProfile = ({ user }) => {
 
                         <input
                             type="text"
-                            className="input input-bordered w-full rounded-xl"
+                            className="input input-bordered w-full rounded-lg"
                             placeholder="https://example.com/photo.jpg"
                             value={photoURL}
                             onChange={(e) =>
@@ -249,12 +240,11 @@ const EditProfile = ({ user }) => {
                             btn
                             btn-primary
                             w-full
-                            rounded-xl
+                            rounded-lg
                             text-base
-                            shadow-md
                             transition-all
-                            hover:scale-[1.02]
-                            hover:shadow-lg
+                            duration-300
+                            hover:-translate-y-0.5
                         "
                         onClick={handleSave}
                         disabled={isSaving}

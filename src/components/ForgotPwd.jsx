@@ -1,4 +1,4 @@
-import { use, useState } from "react";
+import { useState } from "react";
 import axios from "axios";
 import { BASE_URL } from "../utils/constants";
 import { useNavigate } from "react-router-dom";
@@ -39,13 +39,13 @@ const ForgotPwd = () => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-[300px] p-6">
+    <div className="auth-page">
       <form
         onSubmit={handleGetOTP}
-        className="w-full max-w-sm flex flex-col gap-4 bg-base-100 p-6 rounded-xl shadow-md border border-base-200"
+        className="auth-panel enter-soft flex flex-col gap-4 p-5 sm:p-8"
       >
-        <h2 className="text-xl font-semibold text-center">Forgot Password</h2>
-        <p className="text-sm text-gray-500 text-center">
+        <h2 className="page-title text-center">Forgot Password</h2>
+        <p className="text-center text-sm text-base-content/65">
           Enter your registered email to receive a password reset OTP.
         </p>
 
@@ -64,7 +64,7 @@ const ForgotPwd = () => {
             <span className="label-text">Email Address</span>
           </label>
           <input
-            className="input input-bordered w-full"
+            className="input input-bordered w-full rounded-lg"
             type="email"
             required
             placeholder="mail@site.com"
@@ -77,7 +77,7 @@ const ForgotPwd = () => {
         <button
           type="submit"
           disabled={loading || !emailId}
-          className="btn btn-primary w-full mt-2"
+          className="btn btn-primary mt-2 w-full rounded-lg transition-all duration-300 hover:-translate-y-0.5"
         >
           {loading ? <span className="loading loading-spinner"></span> : "Get an OTP"}
         </button>

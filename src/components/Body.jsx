@@ -40,15 +40,25 @@ const Body = () => {
   }, []);
 
   if (!userData) {
-    return <div className="flex min-h-screen items-center justify-center">Loading...</div>;
+    return (
+      <div className="auth-page">
+        <div className="text-center enter-soft">
+          <span className="loading loading-spinner loading-lg text-primary" aria-label="Loading account" />
+          <p className="mt-4 font-semibold">Preparing your workspace</p>
+          <p className="mt-1 text-sm text-base-content/60">Just a moment while we bring your profile in.</p>
+        </div>
+      </div>
+    );
   }
 
   return (
-    <>
-    <NavBar />
-    <Outlet />
-    <Footer />
-    </>
+    <div className="flex min-h-dvh flex-col">
+      <NavBar />
+      <main className="flex-1">
+        <Outlet />
+      </main>
+      <Footer />
+    </div>
   )
 }
 
