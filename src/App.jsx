@@ -9,6 +9,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Logout from './components/Logout';
 import Login from './components/Login';
 import ForgotPwd from './components/ForgotPwd';
+import Payment from './components/Payment';
 import Profile from './components/Profile';
 import { Connection } from './components/Connection';
 import Requests from './components/Request';
@@ -31,6 +32,7 @@ function App() {
             <Route path="logout" element={<Logout />} />
             <Route path="profile" element={<Profile />} />
             <Route path="requests" element={<Requests />} />
+            <Route path="premium" element={<Payment />} />
           </Route>
         </Routes>
       </BrowserRouter>

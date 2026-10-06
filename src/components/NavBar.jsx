@@ -211,6 +211,15 @@ const NavBar = () => {
                             </li>
 
                             <div className="divider my-1"></div>
+                             <li>
+                                <Link
+                                    to="/premium"
+                                    className="rounded-xl py-3"
+                                >
+                                    <span>💎</span>
+                                    Premium
+                                </Link>
+                            </li>
 
                             {/* Logout */}
                             <li>
