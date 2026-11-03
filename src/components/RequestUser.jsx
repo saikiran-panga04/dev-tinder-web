@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { removeRequest } from "../utils/requestSlice";
 const RequestUser = ({ requestId, userData }) => {
-    const { firstName, lastName, age, gender, about, photoURL } = userData;
+    const { firstName, lastName, age, gender, about, photoURL } = userData ? userData : {};
     const _id = requestId;
     const [toast, setToast] = useState(false);
     const [stat,setStat]=useState("");

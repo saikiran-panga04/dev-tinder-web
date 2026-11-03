@@ -1,5 +1,6 @@
 import Signup from './components/Signup';
 import Verifyotp from './components/Verifyotp';
+import Chat from './components/Chat';
 import './App.css';
 import { Provider } from 'react-redux';
 import store from './utils/appStore';
@@ -33,6 +34,7 @@ function App() {
             <Route path="profile" element={<Profile />} />
             <Route path="requests" element={<Requests />} />
             <Route path="premium" element={<Payment />} />
+            <Route path="chat/:id" element={<Chat />} />
           </Route>
         </Routes>
       </BrowserRouter>
