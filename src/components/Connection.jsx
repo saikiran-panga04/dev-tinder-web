@@ -2,8 +2,9 @@ import React from 'react';
 import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
 import { addConnection } from '../utils/connectionSlice';
-import { BASE_URL } from '../utils/constants';
+import { BASE_URL } from '../utils/socket';
 import UserConnection from './UserConnection';
+import { Link } from 'react-router-dom';
 
 export const Connection = () => {
 
@@ -108,16 +109,21 @@ export const Connection = () => {
 
                         <div
                             key={connection?._id || index}
-                            className="
-                                transition-all
-                                duration-300
-                                hover:-translate-y-1
-                            "
+                            className="transition-all duration-300 hover:-translate-y-1"
                         >
                             <UserConnection
                                 connections={connection}
                             />
+                            <div className="mt-3 flex justify-center">
+                               <Link
+                                   to={`/chat/${connection?._id}`}
+                                   className="btn btn-primary"
+                               >
+                                   Chat
+                               </Link>
+                            </div>
                         </div>
+                        
 
                     ))}
 
